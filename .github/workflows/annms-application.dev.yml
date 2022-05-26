@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2    
       - name: deploy
-        uses: glopezep/helm@v1.7.1
+        uses: deliverybot/helm@v1
         with:
           helm: helm
           release: annms-prod-application
