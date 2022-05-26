@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2    
       - name: deploy
-        uses: deliverybot/helm@v1
+        uses: deliverybot/helm@master
         with:
           helm: helm3
           release: annms-prod-application
