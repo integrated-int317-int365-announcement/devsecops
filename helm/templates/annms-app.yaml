@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: annms-app
+  labels:
+    app: annms-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: annms-app
+  template:
+    metadata:
+      labels:
+        app: annms-app
+    spec:
+      containers:
+      - name: annms-app
+        image: ghcr.io/integrated-int317-int365-announcement/adonis-announcement-project:dev
+        ports:
+        - containerPort: 3333
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: annms-app-svc
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3333
+  selector:
+    app: annms-app

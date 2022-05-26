@@ -1,0 +1,23 @@
+name: annms-pro
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [dev]
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  deploy-prod:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - uses: Azure/k8s-set-context@v1
+        with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}        
+      - name: deploy
+        uses: deliverybot/helm@v1
+        with:
+          helm: helm3
+          release: annms-prod-application
+          namespace: annms-prod
+          chart: helm
