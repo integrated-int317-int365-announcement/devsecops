@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: annms-dbms
+  name: kub
   namespace: annms-database
   labels:
     app: annms-dbms
