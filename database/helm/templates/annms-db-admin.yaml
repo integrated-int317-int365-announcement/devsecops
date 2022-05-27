@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: annms-db-admin
+  namespace: annms-workload
+  labels:
+    app: annms-db-admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: annms-db-admin
+  template:
+    metadata:
+      labels:
+        app: annms-db-admin
+    spec:
+      containers:
+      - name: annms-db-admin
+        image: phpmyadmin/phpmyadmin:5.1.1
+        {{- if .Values.dbAdminEnv }}
+        env:
+        {{- range $key, $value := .Values.dbAdminEnv }}
+        - name: {{ $key }}
+          value: {{ $value | quote }}
+        {{- end }}
+        {{- end }}
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: annms-db-admin-svc
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3307
+  selector:
+    app: annms-db-admin

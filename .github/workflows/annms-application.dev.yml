@@ -14,7 +14,7 @@ jobs:
       - name: deploy
         uses: glopezep/helm@v1.7.1
         with:
-          helm: helm
+          helm: /helm
           release: annms-prod-application
           namespace: annms-prod
           chart: helm
