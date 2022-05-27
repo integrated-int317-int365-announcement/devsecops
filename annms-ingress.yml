@@ -4,7 +4,7 @@ metadata:
   name: annms-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.org/rewrites: "serviceName=annms-db-admin-svc rewrite=/"
+    nginx.org/rewrites: "serviceName=annms-app-svc rewrite=/"
     nginx.org/rewrites: "serviceName=annms-db-admin-svc rewrite=/"
 
 spec:
