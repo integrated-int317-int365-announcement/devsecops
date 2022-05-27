@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: annms-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.org/rewrites: "serviceName=annms-db-admin-svc rewrite=/"
+    nginx.org/rewrites: "serviceName=annms-db-admin-svc rewrite=/"
+
+spec:
+  rules:
+    - host: annoucementsystem.ddns.net
+      http:
+        paths:
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name: annms-app-svc
+                port: 
+                  number: 3333
+
+          - path: /annms-db-admin
+            pathType: Exact
+            backend:
+              service:
+                name: annms-db-admin-svc
+                port: 
+                  number: 3307
