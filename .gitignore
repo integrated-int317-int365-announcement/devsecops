@@ -1,3 +1,3 @@
 helm-values
-annms-ingress.yaml
+annms-ingress-example.yaml
 letsencrypt-production.yaml
