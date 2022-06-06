@@ -26,7 +26,12 @@ spec:
         {{- end }}
         {{- end }}
         ports:
-        - containerPort: 80
+          - name: http
+            containerPort: 80
+            protocol: TCP
+          - name: https
+            containerPort: 443
+            protocol: TCP
 ---
 apiVersion: v1
 kind: Service
