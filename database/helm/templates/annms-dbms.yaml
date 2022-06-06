@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: annms-dbms
-  #namespace: annms-database
+  namespace: annms-workload
   labels:
     app: annms-dbms
 spec:
