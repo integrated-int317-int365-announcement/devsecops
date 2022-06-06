@@ -36,5 +36,7 @@ spec:
   type: ClusterIP
   ports:
   - port: 3307
+    protocol: TCP
+    targetPort: 80
   selector:
     app: annms-db-admin
