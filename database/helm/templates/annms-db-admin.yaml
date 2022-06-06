@@ -33,7 +33,7 @@ kind: Service
 metadata:
   name: annms-db-admin-svc
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - protocol: TCP
     port: 3307
