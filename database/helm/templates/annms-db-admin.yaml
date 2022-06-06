@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: annms-db-admin
-        image: bitnami/phpmyadmin:latest
+        image: phpmyadmin/phpmyadmin:5.1.1
         {{- if .Values.dbAdminEnv }}
         env:
         {{- range $key, $value := .Values.dbAdminEnv }}
