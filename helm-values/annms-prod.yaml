@@ -1,0 +1,36 @@
+env: prod
+mysqlServer:
+  image: ghcr.io/integrated-int317-int365-announcement/database:dev
+  envValues:
+    MYSQL_ROOT_PASSWORD: ...
+adonisApp:
+  image: ghcr.io/integrated-int317-int365-announcement/adonis-announcement-project:dev
+  replicas: 1
+  envValues:
+    PORT: 3333
+    HOST: ...
+    NODE_ENV: production
+    APP_KEY: ...
+    DRIVE_DISK: local
+    SESSION_DRIVER: cookie
+    CACHE_VIEWS: false
+    DB_CONNECTION: mysql
+    MYSQL_HOST: ...
+    MYSQL_PORT: 3306
+    MYSQL_USER: ...
+    MYSQL_PASSWORD: ...
+    MYSQL_DB_NAME: announcement
+    NODE_EXTRA_CA_CERTS: cacert.pem
+dbAdmin:
+  image: phpmyadmin/phpmyadmin:5.1.1
+  replicas: 1
+  envValues:
+    PMA_HOST: ...
+    PMA_PORT: 3306
+    PMA_ABSOLUTE_URI: https://.../phpmyadmin/
+ingress:
+  host: ...
+  adonisApp:
+    path: /
+  dbAdmin:
+    path: /phpmyadmin(/|$)(.*)

@@ -1,0 +1,28 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: annms-database-dev
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     path: database/helm
+#     repoURL: https://github.com/integrated-int317-int365-announcement/devsecops.git
+#     targetRevision: dev
+#     helm:
+#       values: |-
+#         env: dev
+#         mysqlServer:
+#           image: ghcr.io/integrated-int317-int365-announcement/database:dev
+#           envValues:
+#             MYSQL_ROOT_PASSWORD: .....
+
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: annms-dev
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true

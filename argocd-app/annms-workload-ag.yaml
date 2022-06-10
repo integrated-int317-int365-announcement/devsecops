@@ -1,0 +1,55 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: annms-workload-dev
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     path: workload/helm
+#     repoURL: https://github.com/integrated-int317-int365-announcement/devsecops.git
+#     targetRevision: dev
+#     helm:
+#       values: |-
+#         env: dev
+#         adonisApp:
+#           image: ghcr.io/integrated-int317-int365-announcement/adonis-announcement-project:dev
+#           replicas: 1
+#           envValues:
+#             PORT: 3333
+#             HOST: ...
+#             NODE_ENV: dev
+#             APP_KEY: ...
+#             DRIVE_DISK: local
+#             SESSION_DRIVER: cookie
+#             CACHE_VIEWS: false
+#             DB_CONNECTION: mysql
+#             MYSQL_HOST: ...
+#             MYSQL_PORT: 3306
+#             MYSQL_USER: ...
+#             MYSQL_PASSWORD: ...
+#             MYSQL_DB_NAME: announcement
+#             NODE_EXTRA_CA_CERTS: cacert.pem
+#         dbAdmin:
+#           image: phpmyadmin/phpmyadmin:5.1.1
+#           replicas: 1
+#           envValues:
+#             PMA_HOST: ...
+#             PMA_PORT: 3306
+#             PMA_ABSOLUTE_URI: https://.../phpmyadmindev/
+#         ingress:
+#           host: ...
+#           adonisApp:
+#             path: /
+#           dbAdmin:
+#             path: /phpmyadmindev(/|$)(.*)
+
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: annms-dev
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
